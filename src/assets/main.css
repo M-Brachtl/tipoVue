@@ -1,0 +1,70 @@
+/* Globální styly */
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  width: 100%;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: black;
+  color: white;
+  font-size: large;
+  padding: 5px 0;
+  text-align: center;
+}
+
+main {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#heading {
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+
+#heading span {
+  width: 25%;
+  text-align: center;
+}
+
+/* Styly pro MatchItem komponentu */
+.match-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.match-item span {
+  width: 25%;
+  text-align: center;
+  padding: 0 5px;
+}
+
+.match-item input {
+  width: 45px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.match-item .match-point {
+  display: flex;
+  width: 75%;
+  justify-content: space-around;
+  border: none;
+  padding: 0;
+  align-items: center;
+}

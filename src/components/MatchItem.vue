@@ -1,6 +1,6 @@
 <script setup>
-import { watch, ref, toRefs, defineExpose, onMounted } from 'vue';
-import { defineProps, defineEmits } from 'vue';
+import { watch, ref, toRefs, onMounted } from 'vue';
+//import { defineProps, defineEmits, defineExpose } from 'vue';
 
 const props = defineProps({
   match: {
@@ -67,38 +67,13 @@ defineExpose({
 </script>
 
 <template>
-  <div>
+  <div class="match-item">
     <span>{{ match }}</span>
-    <input contenteditable="true" v-model="localResult" />
-    <input contenteditable="true" v-model="localGuess" />
-    <span>{{ points }}</span>
+    <div class="match-point">
+      <span><input contenteditable="true" v-model="localResult" /></span>
+      <span><input contenteditable="true" v-model="localGuess" /></span>
+      <span>{{ points }}</span>
+    </div>
   </div>
 </template>
 
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-
-div {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-</style>

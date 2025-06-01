@@ -1,0 +1,114 @@
+[
+    {
+        "match": "Austria vs Finland",
+        "result": "1:2"
+    },
+    {
+        "match": "Sweden vs Slovakia",
+        "result": "5:0"
+    },
+    {
+        "match": "Slovenia vs Canada",
+        "result": "0:4"
+    },
+    {
+        "match": "Sweden vs Austria",
+        "result": "4:2"
+    },
+    {
+        "match": "France vs Latvia",
+        "result": "1:4"
+    },
+    {
+        "match": "Slovakia vs Slovenia",
+        "result": "3:1"
+    },
+    {
+        "match": "Latvia vs Canada",
+        "result": "1:7"
+    },
+    {
+        "match": "Finland vs France",
+        "result": "4:3 OT"
+    },
+    {
+        "match": "Austria vs Slovakia",
+        "result": "3:2 GWS"
+    },
+    {
+        "match": "Finland vs Sweden",
+        "result": "1:2"
+    },
+    {
+        "match": "Slovenia vs Latvia",
+        "result": "2:5"
+    },
+    {
+        "match": "Canada vs France",
+        "result": "5:0"
+    },
+    {
+        "match": "Slovakia vs France",
+        "result": "2:1"
+    },
+    {
+        "match": "Latvia vs Sweden",
+        "result": "0:6"
+    },
+    {
+        "match": "Finland vs Slovenia",
+        "result": "9:1"
+    },
+    {
+        "match": "Canada vs Austria",
+        "result": "5:1"
+    },
+    {
+        "match": "Austria vs France",
+        "result": "5:2"
+    },
+    {
+        "match": "Sweden vs Slovenia",
+        "result": "4:0"
+    },
+    {
+        "match": "Finland vs Latvia",
+        "result": "2:1"
+    },
+    {
+        "match": "France vs Sweden",
+        "result": "0:4"
+    },
+    {
+        "match": "Canada vs Slovakia",
+        "result": "7:0"
+    },
+    {
+        "match": "Slovenia vs Austria",
+        "result": "2:3 GWS"
+    },
+    {
+        "match": "Slovakia vs Latvia",
+        "result": "1:5"
+    },
+    {
+        "match": "France vs Slovenia",
+        "result": "-:-"
+    },
+    {
+        "match": "Canada vs Finland",
+        "result": "-:-"
+    },
+    {
+        "match": "Latvia vs Austria",
+        "result": "-:-"
+    },
+    {
+        "match": "Slovakia vs Finland",
+        "result": "-:-"
+    },
+    {
+        "match": "Sweden vs Canada",
+        "result": "-:-"
+    }
+]
