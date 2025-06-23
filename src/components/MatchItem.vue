@@ -31,10 +31,10 @@ const countPoints = () => {
   const prevValue = points.value;
   if (localResult.value === localGuess.value) {
     points.value = 30;
-  } else if ((localResult.value.split(':')[0] > localResult.value.split(":")[1] && localGuess.value.split(':')[0] > localGuess.value.split(":")[1]) || (
+  } else if (((localResult.value.split(':')[0] > localResult.value.split(":")[1] && localGuess.value.split(':')[0] > localGuess.value.split(":")[1]) || (
     localResult.value.split(':')[0] < localResult.value.split(":")[1] && localGuess.value.split(':')[0] < localGuess.value.split(":")[1]) || (
       localResult.value.split(':')[0] === localResult.value.split(":")[1] && localGuess.value.split(':')[0] === localGuess.value.split(":")[1])
-  ) {
+  ) && localResult.value !== "-:-") {
     points.value = 20 - Math.abs(localResult.value.split(':')[0] - localGuess.value.split(':')[0]) - Math.abs(localResult.value.split(':')[1] - localGuess.value.split(':')[1]);
   }
   else points.value = 0;
