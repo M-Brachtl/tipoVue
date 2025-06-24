@@ -83,7 +83,7 @@ const updatePoints = (newPoints, prevPoints) => {
 </script>
 
 <template>
-  <header><button @click="loadMatches()">Načíst</button><span>Tipovačka</span><button @click="saveMatches()">Uložit</button></header>
+  <header><button @click="loadMatches()">Načíst</button> <span>Tipovačka</span> <button @click="saveMatches()">Uložit</button></header>
   <main>
     <div id="heading"><span>Zápasy</span><span>Výsledky</span><span>Tipy</span><span>Body: {{ totalPoints }}</span></div>
     <MatchItem v-for="(item, index) in matches" :key="index" :match="item.match" :result="item.result" :guess="item.guess" @points-updated="updatePoints" />
