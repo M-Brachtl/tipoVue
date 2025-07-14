@@ -59,11 +59,11 @@ watch(() => props.guess, (newValue) => {
 
 watch([localResult, localGuess], countPoints, { immediate: true });
 
-defineExpose({
-  getValue() {
-    return points.value;
-  }
-});
+// defineExpose({
+//   getValue() {
+//     return points.value;
+//   }
+// });
 </script>
 
 <template>
