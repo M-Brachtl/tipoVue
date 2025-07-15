@@ -1,11 +1,50 @@
 <script setup>
-import { RouterView, RouterLink } from 'vue-router'
+import { ref, watch } from 'vue';
+import { RouterView, RouterLink, useRoute } from 'vue-router'
+
+const allData = ref({
+  test1: [
+    { match: 'Czechia vs Switzerland', result: '2:1', guess: '2:0' },
+    { match: 'Germany vs France', result: '1:1', guess: '1:1' },
+    { match: 'Italy vs Spain', result: '0:2', guess: '0:3' }
+  ],
+  test2: [
+    { match: 'Czechia vs Switzerland', result: '2:1', guess: '1:0' },
+    { match: 'Germany vs France', result: '1:1', guess: '2:2' },
+    { match: 'Italy vs Spain', result: '0:2', guess: '0:2' }
+  ]
+});
+
+function updateData(newData) {
+  allData.value = { ...allData.value, ...newData };
+  console.log("Updated allData:", allData.value);
+}
+
+const userID = ref('test1'); // Předpokládáme, že uživatel je 'test1'
+
+const route = useRoute();
+const currentLocation = ref(route.path);
+watch(() => route.path, (newPath) => {
+  currentLocation.value = newPath;
+});
+
+
 </script>
 
 <template>
-  <RouterView />
-  <nav>
-    <RouterLink to="/">Global View</RouterLink>
-    <RouterLink to="/user">User View</RouterLink>
-  </nav>
+  <header><button @click="loadMatches()">Načíst</button> <span>{{ "Tipovačka" }}</span> <button @click="saveMatches()">Uložit</button></header>
+
+  <RouterView v-slot="{ Component }">
+    <Component :is="Component" :allData="allData" :userID="userID" @updateData="updateData" />
+  </RouterView>
+  <div class="navigation">
+    <!-- <input type="text" v-model="userID" placeholder="Enter User ID" v-if="currentLocation !== '/user'" /> -->
+    <select v-model="userID" v-if="currentLocation !== '/user'">
+      <option v-for="userKey in Object.keys(allData)">{{ userKey }}</option>
+    </select>
+
+
+    <RouterLink to="/" v-if="currentLocation !== '/'">Global View</RouterLink>
+    <RouterLink to="/user" v-if="currentLocation !== '/user'">User View</RouterLink>
+  </div>
 </template>
