@@ -1,31 +1,69 @@
 <script setup>
-import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps({
     allData: {
         type: Object,
         required: true
+    },
+    pointsData: {
+        type: Array,
+        required: true
     }
 });
+const emit = defineEmits(['userIDEmit']);
 
-// from all the data, we need to make a list of matches
-const matches = ref([]);
-
+function emitIDChange(emittedUserID) {
+    // Emit an event to switch user ID
+    emit('userIDEmit', emittedUserID);
+}
 
 </script>
 ¨
 <template>
     <div class="matches">
         <h2>Global Matches</h2>
-        <ul>
-            <li v-for="(matches, userID) in props.allData" :key="userID">
-                <h3>{{ userID }}</h3>
-                <ul>
-                    <li v-for="match in matches" :key="match.match">
-                        {{ match.match }} - Result: {{ match.result }} - Guess: {{ match.guess }}
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Zápas</th>
+                    <th>Výsledek</th>
+                    <th v-for="username in Object.keys(allData)"><RouterLink to="/user" @click="emitIDChange(username)">{{ username }}</RouterLink></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(match, index) in pointsData" :key="index">
+                    <td>{{ match.teams }}</td>
+                    <td>{{ match.result }}</td>
+                    <td v-for="userpoints in Object.values(match.points)">
+                        {{ userpoints }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
+
+<style scoped>
+.matches {
+    padding: 20px;
+}
+.matches table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.matches th, .matches td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.matches th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+.matches tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.matches tr:hover {
+    background-color: #ddd;
+}
+</style>

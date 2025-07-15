@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { RouterView, RouterLink, useRoute } from 'vue-router'
+import pointsData from './assets/points.json';
 
 const allData = ref({
   test1: [
@@ -14,10 +15,18 @@ const allData = ref({
     { match: 'Italy vs Spain', result: '0:2', guess: '0:2' }
   ]
 });
+const totalPoints = ref({
+  test1: 68,
+  test2: 66
+});
+const matchPoints = ref([])
+matchPoints.value = pointsData;
 
 function updateData(newData) {
   allData.value = { ...allData.value, ...newData };
-  console.log("Updated allData:", allData.value);
+  // console.log("Updated allData:", allData.value);
+
+  // send POST request to save data
 }
 
 const userID = ref('test1'); // Předpokládáme, že uživatel je 'test1'
@@ -28,6 +37,10 @@ watch(() => route.path, (newPath) => {
   currentLocation.value = newPath;
 });
 
+function userIDSwitch(newUserID) {
+  userID.value = newUserID;
+  // console.log("Switched userID to:", userID.value);
+}
 
 </script>
 
@@ -35,7 +48,7 @@ watch(() => route.path, (newPath) => {
   <header><button @click="loadMatches()">Načíst</button> <span>{{ "Tipovačka" }}</span> <button @click="saveMatches()">Uložit</button></header>
 
   <RouterView v-slot="{ Component }">
-    <Component :is="Component" :allData="allData" :userID="userID" @updateData="updateData" />
+    <Component :is="Component" :allData="allData" :userID="userID" :totalPoints="totalPoints" :pointsData="pointsData" @updateData="updateData" @userIDEmit="userIDSwitch" />
   </RouterView>
   <div class="navigation">
     <!-- <input type="text" v-model="userID" placeholder="Enter User ID" v-if="currentLocation !== '/user'" /> -->

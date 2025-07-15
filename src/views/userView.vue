@@ -13,9 +13,13 @@ const props = defineProps({
     userID: {
         type: String,
         required: true
+    },
+    totalPoints: {
+        type: Object,
+        required: true
     }
 });
-console.log(props.allData);
+totalPoints.value = props.totalPoints[props.userID] || 0;
 const matches = ref(props.allData[props.userID] || [])
 // const matches = ref([])
 function loadMatches() {
