@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const props = defineProps({
@@ -18,6 +19,19 @@ function emitIDChange(emittedUserID) {
     emit('userIDEmit', emittedUserID);
 }
 
+const generateTempUsers = (n) => {
+    // Generate temporary user data for testing in allData
+    const tempUsers = {};
+    for (let i = 1; i <= n; i++) {
+        tempUsers[`temp${i}`] = {};
+    }
+    Object.assign(props.allData, tempUsers);
+
+};
+onMounted(() => {
+    // Initialize with some temporary users for testing
+    //generateTempUsers(14);
+});
 </script>
 ¨
 <template>
@@ -26,9 +40,9 @@ function emitIDChange(emittedUserID) {
         <table>
             <thead>
                 <tr>
-                    <th>Zápas</th>
-                    <th>Výsledek</th>
-                    <th v-for="username in Object.keys(allData)"><RouterLink to="/user" @click="emitIDChange(username)">{{ username }}</RouterLink></th>
+                    <th id="match">Zápas</th>
+                    <th id="result">Výsledek</th>
+                    <th v-for="username in Object.keys(allData)" class="username"><RouterLink class="user-link" to="/user" @click="emitIDChange(username)">{{ username }}</RouterLink></th>
                 </tr>
             </thead>
             <tbody>
@@ -47,10 +61,15 @@ function emitIDChange(emittedUserID) {
 <style scoped>
 .matches {
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .matches table {
-    width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
 }
 .matches th, .matches td {
     border: 1px solid #ddd;
@@ -65,5 +84,23 @@ function emitIDChange(emittedUserID) {
 }
 .matches tr:hover {
     background-color: #ddd;
+}
+.user-link {
+    color: #000000;
+    text-decoration: none;
+    width: -webkit-fill-available;
+    display: inline-block;
+}
+#result {
+    width: 0; /* as small as possible */
+}
+#match {
+    width: 170px;
+}
+.username {
+    width: 100px;
+}
+.matches h2 {
+    text-align: center;
 }
 </style>
