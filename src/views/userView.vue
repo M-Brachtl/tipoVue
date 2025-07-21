@@ -17,6 +17,10 @@ const props = defineProps({
     totalPoints: {
         type: Object,
         required: true
+    },
+    pointsData: {
+        type: Array,
+        required: true
     }
 });
 totalPoints.value = props.totalPoints[props.userID] || 0;
@@ -70,9 +74,25 @@ function saveMatches() {
     matches.value[index].result = item.localResult || '-:-';
     matches.value[index].guess = item.localGuess || '-:-';
   });
+  // Aktualizace bodů za jednotlivé zápasy proměnná pointsData
+  matchesEl.value.forEach((item, index) => {
+    const points = item.points || 0;
+    if (props.pointsData[index]) {
+      props.pointsData[index].points[props.userID] = points;
+    } else {
+      props.pointsData.push({
+        teams: matches.value[index].match,
+        result: matches.value[index].result,
+        points: { [props.userID]: points }
+      });
+    }
+  });
+
+
+
   emits('updateData', {
     [props.userID]: matches.value
-  });
+  }, props.pointsData);
   /*// Uložení dat do JSON souboru
   const data = matches.value.map(item => ({
     match: item.match,

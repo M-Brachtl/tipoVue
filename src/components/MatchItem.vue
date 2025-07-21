@@ -61,7 +61,9 @@ watch([localResult, localGuess], countPoints, { immediate: true });
 
 defineExpose({
   localResult,
-  localGuess
+  localGuess,
+  points,
+  match
 });
 </script>
 
